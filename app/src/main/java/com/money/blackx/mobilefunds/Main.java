@@ -36,7 +36,7 @@ public class Main extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        forceRTLIfSupported();
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -56,6 +56,13 @@ public class Main extends Activity
                 .commit();
     }
 
+    //@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void forceRTLIfSupported() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            getWindow().getDecorView().setLayoutDirection(
+                    View.LAYOUT_DIRECTION_RTL);
+        }
+    }
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
